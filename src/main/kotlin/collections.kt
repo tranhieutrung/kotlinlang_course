@@ -96,18 +96,18 @@ fun main() {
     println(200 in readOnlyJuiceMenu.values)
 
 
-    //Exercises 1: print total numbers of 2 lists.
+    //Exercise 1: print total numbers of 2 lists.
     val greenNumbers = listOf(1, 4, 23)
     val redNumbers = listOf(17, 2)
     println(greenNumbers.count() + redNumbers.count())
 
-    //Exercises 2: check whether the requested protocol is supported or not
+    //Exercise 2: check whether the requested protocol is supported or not
     val SUPPORTED = setOf("HTTP", "HTTPS", "FTP")
     val requested = "ftp"
     val isSupported = requested.uppercase() in SUPPORTED
     println("Support for $requested: $isSupported")
 
-    //Exercises 3: Define a map that relates integer numbers from 1 to 3 to their corresponding spelling. Use this map to spell the given number.
+    //Exercise 3: Define a map that relates integer numbers from 1 to 3 to their corresponding spelling. Use this map to spell the given number.
     val number2word = mapOf(1 to "one", 2 to "two", 3 to "three")
     val n = 4
     println("$n is spelt as '${number2word[n]}'")
