@@ -37,10 +37,28 @@ fun main() {
     val totalTimeInSeconds = timeInMinutes.map (min2sec).sum()
     println("Total time is $totalTimeInSeconds seconds")
 
-    // Trailing lambdas
+    // Trailing lambdas (apply for the only or the last para)
     // The operation sums the initial value with every item in the list cumulatively.
     println(listOf(1, 2, 3).fold(0, { x, item -> x + item }))
 
     // Alternatively, in the form of a trailing lambda
     println(listOf(1, 2, 3).fold(0) { x, item -> x + item })
+
+
+    //Ex1: Use a lambda expression to create a list of URLs from the list of actions
+    val actions = listOf("title", "year", "author")
+    val prefix = "https://example.com/book-info"
+    val id = 5
+    val urls = actions.map { action -> "$prefix/$id/$action" }
+    println(urls)
+
+    //Ex2:
+    repeatN(5){println("Hello")}
+}
+
+//Ex2:
+fun repeatN(n: Int, action: () -> Unit) {
+    for (i in 1..n) {
+        action()
+    }
 }
