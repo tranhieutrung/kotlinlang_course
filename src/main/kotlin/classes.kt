@@ -1,3 +1,5 @@
+import kotlin.random.Random
+
 class Contact(val id: Int, var email: String) {
     // Member functions
     fun printId() {
@@ -48,6 +50,31 @@ class Person4(val name: String) {
     }
 }
 
+/*Ex1:
+Define a data class Employee with two properties: one for a name, and another for a salary. Make sure that the property for salary is mutable, otherwise you won't get a salary boost at the end of the year! The main function demonstrates how you can use this data class.
+*/
+data class Employee(val name: String, var salary: Int) {} //use a Data class to automatically get additional member functions
+
+/* Ex2:
+Declare the additional data classes that are needed for the Ex2 code to compile.
+ */
+data class Person(val name: Name, val address: Address, val ownsAPet: Boolean = true)
+
+data class Name (val  firstName: String, val lastName: String)
+
+data class Address (val  street: String, val city : City)
+
+data class City (val city:  String, val country  : String)
+
+/*
+Ex3
+To test your code, you need a generator that can create random employees. Define a RandomEmployeeGenerator class with a fixed list of potential names (inside the class body). Configure the class with a minimum and maximum salary (inside the class header). In the class body, define the generateEmployee() function. Once again, the main function demonstrates how you can use this class.
+*/
+class RandomEmployeeGenerator(var minSalary: Int, var maxSalary: Int) {
+    val nameList = listOf("Saku", "Shahnaj",  "Kim",  "Huong", "John", "David")
+    fun generateEmployee() = Employee(nameList.random(), Random.nextInt(from = minSalary, until = maxSalary))
+}
+
 fun main() {
     // constructor
     val contact = Contact(1, "John@mail.com")
@@ -94,4 +121,30 @@ fun main() {
     val child = Person4("Bob", parent)
     println(parent.name)
     println(parent.children.map { it.name })
+
+    //Ex1:
+    println("Exercise 1:")
+    val emp = Employee("Mary", 20)
+    println(emp)
+    emp.salary += 10
+    println(emp)
+
+    //Ex2:
+    println("Exercise 2:")
+    val person = Person(
+        Name("John", "Smith"),
+        Address("123 Fake Street", City("Springfield", "US")),
+        ownsAPet = false
+    )
+    println(person)
+
+    //Ex3:
+    println("Exercise 3:")
+    val empGen = RandomEmployeeGenerator(10, 30)
+    println("1st print: ${empGen.generateEmployee()}")
+    println("2nd print: ${empGen.generateEmployee()}")
+    println("3rd print: ${empGen.generateEmployee()}")
+    empGen.minSalary = 50
+    empGen.maxSalary = 100
+    println("Last print: ${empGen.generateEmployee()}")
 }
