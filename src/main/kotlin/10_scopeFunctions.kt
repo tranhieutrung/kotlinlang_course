@@ -44,6 +44,8 @@ val client = Client().apply { // global scope
     authenticate()
 }
 
+// 3. Run
+// Similar to apply, you can use the run scope function to initialize an object, but it's better to use run to initialize an object at a specific moment in your code and immediately compute a result.
 fun main() {
     // 1. Let
     val address: String? = getNextAddress()
@@ -62,4 +64,7 @@ fun main() {
     // 2. Apply
     // only call getData function
     client.getData()
+
+    // 3. Run
+
 }
