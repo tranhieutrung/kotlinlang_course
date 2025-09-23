@@ -16,13 +16,13 @@ fun lengthString(maybeString: String?): Int? = maybeString?.length
 
 
 // Exercise:
-data class Employee (val name: String, var salary: Int)
+data class Employees (val name: String, var salary: Int)
 
 fun employeeById(id: Int) = when(id) {
-    1 -> Employee("Mary", 20)
+    1 -> Employees("Mary", 20)
     2 -> null
-    3 -> Employee("John", 21)
-    4 -> Employee("Ann", 23)
+    3 -> Employees("John", 21)
+    4 -> Employees("Ann", 23)
     else -> null
 }
 
