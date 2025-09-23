@@ -1,0 +1,31 @@
+// Scope functions
+// The most commonly referred to scopes are the global scope and the local scope
+// Depending on the scope function, you can access the object either by referencing it via the keyword this or using it as an argument via the keyword it.
+// Kotlin has five scope functions in total: let, apply, run, also, and with.
+
+// 1. Let
+// Use the let scope function to perform null checks and later perform further actions with the returned object.
+
+fun sendNotification(recipientAddress: String): String {
+    println("Yo $recipientAddress!")
+    return "Notification sent!"
+}
+
+fun getNextAddress(): String {
+    return "sebastian@jetbrains.com"
+}
+
+fun main() {
+    val address: String? = getNextAddress()
+    //the input of sendNotification function is a non-null string, need to check if the address is not null
+    // normal check:
+    //val confirm = if(address != null) {
+        //sendNotification(address)
+    //} else { null }
+
+    // OR use let scope function:
+    val confirm = address?.let {
+        // Refers to the address variable via it, using the temporary scope
+        sendNotification(it)
+    }
+}
