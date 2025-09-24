@@ -13,7 +13,7 @@ fun render(draw: DrawShape.() -> Unit): DrawShape {
     return shape
 }
 
-
+// Lambda expressions with receiver are helpful when you want to create a domain-specific language (DSL)
 //Example 2:
 class MenuItem(val name: String)
 
