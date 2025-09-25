@@ -51,9 +51,13 @@ class Person4(val name: String) {
 }
 
 /*Ex1:
-Define a data class Employee with two properties: one for a name, and another for a salary. Make sure that the property for salary is mutable, otherwise you won't get a salary boost at the end of the year! The main function demonstrates how you can use this data class.
+Define a data class Employee with two properties: one for a name, and another for a salary.
+Make sure that the property for salary is mutable, otherwise you won't get a salary boost at the end of the year!
+The main function demonstrates how you can use this data class.
 */
-data class Employee(val name: String, var salary: Int) {} //use a Data class to automatically get additional member functions
+
+//use a Data class to automatically get additional member functions
+data class Employee(val name: String, var salary: Int) {}
 
 /* Ex2:
 Declare the additional data classes that are needed for the Ex2 code to compile.
@@ -68,11 +72,38 @@ data class City (val city:  String, val country  : String)
 
 /*
 Ex3
-To test your code, you need a generator that can create random employees. Define a RandomEmployeeGenerator class with a fixed list of potential names (inside the class body). Configure the class with a minimum and maximum salary (inside the class header). In the class body, define the generateEmployee() function. Once again, the main function demonstrates how you can use this class.
+To test your code, you need a generator that can create random employees.
+Define a RandomEmployeeGenerator class with a fixed list of potential names (inside the class body).
+Configure the class with a minimum and maximum salary (inside the class header).
+In the class body, define the generateEmployee() function.
+Once again, the main function demonstrates how you can use this class.
 */
 class RandomEmployeeGenerator(var minSalary: Int, var maxSalary: Int) {
     val nameList = listOf("Saku", "Shahnaj",  "Kim",  "Huong", "John", "David")
     fun generateEmployee() = Employee(nameList.random(), Random.nextInt(from = minSalary, until = maxSalary))
+}
+
+
+// Abstract classes
+// Abstract classes can be inherited by default.
+// The purpose of abstract classes is to provide members that other classes inherit or implement
+// We can't create instances from them.
+// Within the child class, you define the behavior of the parent's properties and functions with the override keyword
+abstract class Animal (val type: String) {
+    abstract fun makeSound()
+}
+
+class Dog: Animal("Dog") {
+    override fun makeSound() {
+        println("Woof woof!")
+    }
+    fun fetch() = println("Dog is fetching the ball!")
+}
+
+class Cat: Animal("Cat") {
+    override fun makeSound() {
+        println("Meoo meoo!")
+    }
 }
 
 fun main() {
@@ -114,7 +145,8 @@ fun main() {
     val dog = Pet(alice)
     val cat = Pet(alice)
 
-    println("Alice's pets: ${alice.pets}") //class Pet does not have any property, so the list of pets includes only references
+    // class Pet does not have any property, so the list of pets includes only references
+    println("Alice's pets: ${alice.pets}")
 
     // Another example of secondary constructors
     val parent = Person4("Alice")
@@ -147,4 +179,14 @@ fun main() {
     empGen.minSalary = 50
     empGen.maxSalary = 100
     println("Last print: ${empGen.generateEmployee()}")
+
+    // Abstract classes:
+    val dog1: Animal = Dog()
+    dog1.makeSound()
+    // dog1.fetch() // dog1 is an Animal that doesn't have the fetch function
+    val dog2: Dog = Dog()
+    dog2.makeSound()
+    dog2.fetch()
+    val cat2: Animal = Cat()
+    cat2.makeSound()
 }
