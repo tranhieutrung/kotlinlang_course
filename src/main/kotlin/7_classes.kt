@@ -106,6 +106,49 @@ class Cat: Animal("Cat") {
     }
 }
 
+// Abstract ex:
+/*
+Imagine you're working on a smart home system.
+A smart home typically has different types of devices that all have some basic features but also unique behaviors.
+Complete the abstract class called SmartDevice so that the child class SmartLight can compile successfully.
+Then, create another child class called SmartThermostat that inherits from the SmartDevice class
+and implements turnOn() and turnOff() functions that return print statements (heating or turned off).
+Finally, add another function called adjustTemperature() that accepts a temperature measurement as an input
+and prints: $name thermostat set to $temperature°C.
+*/
+abstract class SmartDevice(val name: String) {
+    abstract fun turnOn()
+    abstract fun turnOff()
+}
+
+class SmartLight(name: String) : SmartDevice(name) {
+    override fun turnOn() {
+        println("$name is now ON.")
+    }
+
+    override fun turnOff() {
+        println("$name is now OFF.")
+    }
+
+    fun adjustBrightness(level: Int) {
+        println("Adjusting $name brightness to $level%.")
+    }
+}
+
+class SmartThermostat(name: String) : SmartDevice(name) {
+    override fun turnOn() {
+        println("$name is now heating.")
+    }
+
+    override fun turnOff() {
+        println("$name is now off.")
+    }
+
+    fun adjustTemperature(temperature: Int) {
+        println("Set $name to $temperature°C")
+    }
+}
+
 fun main() {
     // constructor
     val contact = Contact(1, "John@mail.com")
@@ -189,4 +232,16 @@ fun main() {
     dog2.fetch()
     val cat2: Animal = Cat()
     cat2.makeSound()
+
+    // abstract ex:
+    val livingRoomLight = SmartLight("Living Room Light")
+    val bedroomThermostat = SmartThermostat("Bedroom Thermostat")
+
+    livingRoomLight.turnOn()
+    livingRoomLight.adjustBrightness(10)
+    livingRoomLight.turnOff()
+
+    bedroomThermostat.turnOn()
+    bedroomThermostat.adjustTemperature(5)
+    bedroomThermostat.turnOff()
 }
